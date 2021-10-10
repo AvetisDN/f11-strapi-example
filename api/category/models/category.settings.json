@@ -1,0 +1,59 @@
+{
+  "kind": "collectionType",
+  "collectionName": "categories",
+  "info": {
+    "name": "category",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "thumbnail": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
+    },
+    "posts": {
+      "via": "categories",
+      "collection": "post"
+    },
+    "parent": {
+      "model": "category",
+      "via": "children"
+    },
+    "children": {
+      "collection": "category",
+      "via": "parent"
+    },
+    "slug": {
+      "type": "string"
+    },
+    "color": {
+      "type": "enumeration",
+      "enum": [
+        "sky_500",
+        "pink_500",
+        "indigo_500",
+        "teal_500",
+        "green_500",
+        "yellow_500"
+      ]
+    }
+  }
+}
